@@ -4,7 +4,6 @@
 # functions go here
 
 # checks that ticket name is not blank
-
 def not_blank(question, error_message):
     valid = False
 
@@ -21,12 +20,28 @@ def not_blank(question, error_message):
         else:
             print(error_message)
 
+# checks for an interger between two values
+def int_check(question, low_num, high_num):
 
-# Main Routine goes here
+    error = "Please enter a whole number between {} " \
+            "and {}".format(low_num, high_num)
 
-name = not_blank("Name: ", "Sorry - this can't be blank, "
-                           "please enter your name")
+    valid = False
+    while not valid:
 
+        # ask user for a number and check it is valid
+        try:
+            response = int(input(question))
+
+
+            if low_num <= response <= high_num:
+                return response
+            else:
+                print(error)
+
+        # if an integer is nt entered, display an error
+        except ValueError:
+            print(error)
 
 #  ----   Main Routine   -----
 
@@ -57,8 +72,20 @@ while name != "xxx" and count < MAX_TICKETS:
     # Get name (Can't be blank)
     name = not_blank("Name: ", "Sorry - this can't be blank, "
                                "please enter your name")
+
+    # end the loop if the exit code is entered
+    if name == "xxx":
+        break
+
     count += 1
-    print()
+
+
+    # Get age ( between 12 and 130 )
+    age = int_check("Age: ", 12, 130)
+
+
+# End of ticket loop
+# Calculaate pofits etc...
 
 if count == MAX_TICKETS:
     print("You have sold all the available tickets!")
