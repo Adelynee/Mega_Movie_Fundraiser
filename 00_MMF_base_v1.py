@@ -55,7 +55,7 @@ def int_check(question, low_num, high_num):
 # Loop to get ticket details
 
 # Initialise loop so that it runs at least once
- #Start of loop
+# Start of loop
 
 # Initialise loop so that it runs at least once
 name = ""
@@ -75,8 +75,12 @@ while name != "xxx" and count < MAX_TICKETS:
 
     # Get details...
     name = input("Name: ")
+
+    # end the lo[ if the exit code is entered
+    if name =="xxx":
+        break
+
     count += 1
-    print()
 
     # main routine goes here
     age = int_check("Age: ", 12, 130)
