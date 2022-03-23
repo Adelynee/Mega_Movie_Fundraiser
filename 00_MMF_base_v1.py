@@ -75,8 +75,11 @@ while name != "xxx" and count < MAX_TICKETS:
     if name == "xxx":
         break
 
+
+
     # main routine goes here
     age = int_check("Age: ")
+
 
     if age < 12:
         print("Sorry you are too young for this movie")
@@ -87,11 +90,12 @@ while name != "xxx" and count < MAX_TICKETS:
 
     count += 1
 
-    #if count == MAX_TICKETS:
-        #print("You have sold all the available tickets!")
-    #else:
-        #print("You have sold {} tickets. \n"
-              #"There are {} places still available".format(count, MAX_TICKETS - count))
+if count == MAX_TICKETS:
+    print("You have sold all the available tickets!")
+else:
+    print("You have sold {} tickets. \n"
+            "There are {} places still available".format(count, MAX_TICKETS - count))
+
 
     # Get age (between 12 and 130)
 
