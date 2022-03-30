@@ -1,34 +1,24 @@
-
-# string checking functions, takes in
-# question and list of a valid responses
-
-def string_checker(question, to_check):
+def yes_no(question):
+    error = "Please answer yes/no"
 
     valid = False
     while not valid:
 
+        # ask question and put in response in lowercase
         response = input(question).lower()
 
-        if response in to_check:
-            return response
-
+        if response == "yes" or response == "y":
+            return "yes"
+        elif response == "no" or response == "n":
+            return "no"
         else:
-            for item in to_check:
-                # checks if response is the fist letter
-                # an item in the list
-                if response == item[0]:
-                    # note: returns the entire response
-                    # rather than just the first letter
-                    return item
-        print("sorry that is not a valid response")
-
+            print(error)
 
 
 # Main routine goes here
 
 for item in range(0, 6):
-    want_snacks = string_checker("Do you want "
-                        "snacks? ", ["yes", "no"])
+    want_snacks = yes_no("Do you want snacks? ")
 
     print("Answer OK, you said:", want_snacks)
     print()
