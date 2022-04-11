@@ -1,7 +1,5 @@
-
 # Function goes here
 def string_check(choice, options):
-
     for var_list in options:
 
         # if the snack is in the one of the lists, return the full nale
@@ -36,14 +34,12 @@ valid_snacks = [
     ["orange juice", "oj", "o", "juice", "e"],
 ]
 
-
-
 yes_no = [
     ["yes", "y"],
-    ["no", "n"],
+    ["no", "n"]
 ]
 
-# holds snacl order for a signle user
+# holds snack order for a single user
 snack_order = []
 
 # ask user if they want a snack
@@ -71,7 +67,6 @@ if check_snack == "Yes":
         print("Snack choice: ", snack_choice)
         print()
 
-
         # add snack to list
 
         # check that snack is not the exit code before adding
@@ -88,8 +83,3 @@ else:
 
     for item in snack_order:
         print(item)
-
-
-
-
-
