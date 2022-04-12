@@ -23,33 +23,33 @@ def string_check(choice, options):
     else:
         return "invalid choice"
 
-# Get list of snacks
-def get_snack():
 
-# regular expression to find if the item starts with a number
-number_regex = "^[1-9]"
+# Get list of snacks
+
+def get_snack():
+    # regular expression to find if the item starts with a number
+    number_regex = "^[1-9]"
 
 # valid snacks holds list of all snacks
 # Each item in valid snacks is a list with
 # valid options for each snack <full name, letter code ( a - 3)
 # , and possible abbreviations etc>
-valid_snacks = [
-    ["popcorn", "p", "corn", "a"],
-    ["M&M's", "m&m's", "mms", "m", "b"],
-    ["pita chips", "chips", "pc", "pita", "c"],
-    ["water", "w", "d"],
-    ["orange juice", "oj", "o", "juice", "e"]
-]
+    valid_snacks = [
+     ["popcorn", "p", "corn", "a"],
+     ["M&M's", "m&m's", "mms", "m", "b"],
+     ["pita chips", "chips", "pc", "pita", "c"],
+     ["water", "w", "d"],
+     ["orange juice", "oj", "o", "juice", "e"]
+    ]
 
 
 # holds snack order for a single user
     snack_order = []
 
     desired_snack = ""
-    while desired_snack !="xxx":
+    while desired_snack != "xxx":
 
         snack_row = []
-
 
         # ask user for desired snack and put it in lower case
         desired_snack = input("Snack :").lower()
@@ -124,4 +124,4 @@ else:
     ''' for item in snack_order:
         print(item)
         '''
-    print(snack_order)
+    print(get_order)
