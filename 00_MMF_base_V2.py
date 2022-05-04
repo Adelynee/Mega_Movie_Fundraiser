@@ -97,7 +97,7 @@ all_names = []
 all_tickets = []
 
 # Data Frame Dictionary
-movie_dad_dict = {
+movie_data_dict = {
     'Name': all_names,
     'Ticket': all_tickets
 }
