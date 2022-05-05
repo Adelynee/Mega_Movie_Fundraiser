@@ -56,7 +56,9 @@ print("M&Ms:", snack_lists[1])
 print("Pita Chips:", snack_lists[2])
 print("Water:", snack_lists[3])
 print("Orange Juice:", snack_lists[4])
+print()
 
 # Print details
 movie_frame = pandas.DataFrame(movie_data_dict)
+movie_frame = movie_frame.set_index('Name')
 print(movie_frame)
