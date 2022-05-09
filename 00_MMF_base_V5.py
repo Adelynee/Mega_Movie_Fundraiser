@@ -200,14 +200,34 @@ ticket_sales = 0
 # Initialise lists (to make data-frame in due course)
 all_names = []
 all_tickets = []
+popcorn = []
+mms = []
+pita_chips = []
+water = []
+orange_juice = []
+
+snack_lists = [popcorn, mms, pita_chips, water, orange_juice]
+
 
 
 # Data Frame Dictionary
 movie_data_dict = {
     'Name': all_names,
-    'Ticket': all_tickets
+    'Ticket': all_tickets,
+    'Popcorn': popcorn,
+    'Water': water,
+    'Pita Chips': pita_chips,
+    'M&Ms': mms,
+    'Orange Juice': orange_juice
 }
-
+# cost of each snack
+price_dict = {
+    'Popcorn': 2.5,
+    'Water': 2,
+    'Pita Chips': 4.5,
+    'M&Ms': 3,
+    'Orange Juice': 3.25
+}
 
 # Ask user if they have used the program before & show instructions if necessary
 
