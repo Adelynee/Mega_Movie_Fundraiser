@@ -19,12 +19,11 @@ def not_blank(question):
         # If name is blank, show error (& repeat loop)
         else:
             print("Sorry - this can’t be blank, "
-                 "please enter your name")
+                  "please enter your name")
 
 
 # Checks for an integer more than 0
 def int_check(question):
-
     error = "Please enter a whole number that is more than 0"
 
     valid = False
@@ -61,7 +60,6 @@ def check_tickets(tickets_sold, ticket_limit):
 
 # Gets ticket price based on age
 def get_ticket_price():
-
     # Get age (between 12 and 130
     age = int_check("Age: ")
 
@@ -84,7 +82,6 @@ def get_ticket_price():
 
 
 def string_check(choice, options):
-
     is_valid = ""
     chosen = ""
 
@@ -123,12 +120,12 @@ def get_snack():
     # , and possible abbreviations etc>
 
     valid_snacks = [
-    ["popcorn", "p", "corn", "a"],
-    ["M&Ms", "m&m's", "mms", "m", "b"],    # first item is M&Ms for inclusion in output
-    ["pita chips", "chips", "pc", "pita", "c"],
-    ["water", "w", "d"],
-    ["orange juice", "oj", "o", "juice", "orange", "e"]
-]
+        ["popcorn", "p", "corn", "a"],
+        ["M&Ms", "m&m's", "mms", "m", "b"],  # first item is M&Ms for inclusion in output
+        ["pita chips", "chips", "pc", "pita", "c"],
+        ["water", "w", "d"],
+        ["orange juice", "oj", "o", "juice", "orange", "e"]
+    ]
 
     # holds snack order for a single user.
     snack_order = []
@@ -200,6 +197,8 @@ ticket_sales = 0
 # Initialise lists (to make data-frame in due course)
 all_names = []
 all_tickets = []
+
+# Snack lists
 popcorn = []
 mms = []
 pita_chips = []
@@ -208,7 +207,8 @@ orange_juice = []
 
 snack_lists = [popcorn, mms, pita_chips, water, orange_juice]
 
-
+# store surcharge multiplier
+surcharge_mult_list = []
 
 # Data Frame Dictionary
 movie_data_dict = {
@@ -218,7 +218,8 @@ movie_data_dict = {
     'Water': water,
     'Pita Chips': pita_chips,
     'M&Ms': mms,
-    'Orange Juice': orange_juice
+    'Orange Juice': orange_juice,
+    'Surcharge_Multiplier': surcharge_mult_list
 }
 # cost of each snack
 price_dict = {
@@ -271,7 +272,7 @@ while name != "xxx" and ticket_count < MAX_TICKETS:
         snack_order = get_snack()
 
     else:
-        snack_order =[]
+        snack_order = []
 
     # Assume no snacks have been brought ...
     for item in snack_lists:
@@ -284,16 +285,19 @@ while name != "xxx" and ticket_count < MAX_TICKETS:
             add_list = movie_data_dict[to_find]
             add_list[-1] = amount
 
-    # Get payment method (ie: work out if surcharge is needed)
+    #  Ask for payment method
     how_pay = "invalid choice"
     while how_pay == "invalid choice":
-        how_pay = input("Please chose a payment method (cash or credit)?")
+        how_pay = input("Please chose a payment method (cash or credit)?").lower()
         how_pay = string_check(how_pay, pay_method)
 
     if how_pay == "Credit":
         surcharge_multiplier = 0.05
     else:
         surcharge_multiplier = 0
+
+        surcharge_mult_list.append(surcharge_multiplier)
+
 
 # End of tickets / snacks / payment loop
 
@@ -313,11 +317,31 @@ movie_frame["Sub Total"] = \
     movie_frame['M&Ms'] * price_dict['M&Ms'] + \
     movie_frame['Orange Juice'] * price_dict['Orange Juice']
 
+movie_frame["Surcharge"] = \
+    movie_frame["Sub Total"] * movie_frame["Surcharge_Multiplier"]
+
+movie_frame["Total"] = movie_frame["Sub Total"] + \
+                       movie_frame['Surcharge']
+
 # Shorten column names
 movie_frame = movie_frame.rename(columns={'Orange Juice': 'OJ',
-                                          'Pita Chips': 'Chips'})
+                                          'Pita Chips': 'Chips',
+                                          'Surcharge_Multiplier': 'SM'})
 
-print(movie_frame)
+# Set up columns to be printed ...
+pandas.set_option('display.max_columns', None)
+
+# Display numbers to 2 dp ...
+pandas.set_option('precision', 2)
+
+print_all = input("Print all columns?? (y) for yes ")
+if print_all == "y":
+    print(movie_frame)
+else:
+    print(movie_frame[['Ticket', 'Sub Total',
+                       'Surcharge', 'Total']])
+
+print()
 
 # Calculate ticket profit...
 ticket_profit = ticket_sales - (5 * ticket_count)
@@ -331,20 +355,5 @@ else:
           "There are {} places still available"
           .format(ticket_count, MAX_TICKETS - ticket_count))
 
-
-
-
-
-
-    # Calculate ticket price
-
-    # Loop to ask for snacks
-
-    # Calculate snack price
-
-    # ask for payment method (and apply surcharge if necesary)
-
-
-# Calculate Total sales and profit
 
 # Output data to text file
