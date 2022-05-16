@@ -183,7 +183,7 @@ yes_no = [
 
 # list of valid responses for payment method
 pay_method = [
-    ["cash","ca"],
+    ["cash", "ca"],
     ["credit", "cr", ]
 ]
 
@@ -326,6 +326,5 @@ else:
     print("You have sold {} tickets.  \n"
           "There are {} places still available"
           .format(ticket_count, MAX_TICKETS - ticket_count))
-
 
 # Output data to text file
